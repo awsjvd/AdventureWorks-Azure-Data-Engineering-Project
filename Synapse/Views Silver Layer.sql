@@ -1,95 +1,57 @@
-=====These views will be created in the silver Layer-===========
+ ===== These views will be created in the Silver Layer =====
 
-----------------View calendar-------------
-
-Create view gold.calendar
-as 
-Select 
-      * from 
-      OPENROWSET(
-                BULK'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Calendar',
-                FORMAT = 'Parquet'
-
-      ) as Calendar_Query
-
-----------------View Customer-------------
-
-Create view gold.csutomer
-as 
-Select 
-      * from 
-      OPENROWSET(
-                BULK'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Customers',
-                FORMAT = 'Parquet'
-
-      ) as Customer_Query
-
----------------View Products------------
-
-Create view gold.products
-as 
-Select 
-      * from 
-      OPENROWSET(
-                BULK'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Products',
-                FORMAT = 'Parquet'
-
-      ) as Product_Query
-
---------------Product SubCategories----------------
-
-Create view gold.ProductSubcategories
-as 
-Select 
-      * from 
-      OPENROWSET(
-                BULK'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_ProductSubcategories',
-                FORMAT = 'Parquet'
-
-      ) as ProductSubcategories_Query
-
------------------- Product Terrotries----------
-
-CREATE VIEW gold.productterritories
-AS 
+---------------- View Calendar ----------------
+CREATE VIEW gold.calendar AS 
 SELECT * 
-FROM 
-    OPENROWSET(
-        BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_ProductTerritories',
-        FORMAT = 'PARQUET'
-    ) AS ProductTerritories_Query;
+FROM OPENROWSET(
+    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Calendar',
+    FORMAT = 'PARQUET'
+) AS Calendar_Query;
 
+---------------- View Customer ----------------
+CREATE VIEW gold.customer AS 
+SELECT * 
+FROM OPENROWSET(
+    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Customers',
+    FORMAT = 'PARQUET'
+) AS Customer_Query;
 
+---------------- View Products ----------------
+CREATE VIEW gold.products AS 
+SELECT * 
+FROM OPENROWSET(
+    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Products',
+    FORMAT = 'PARQUET'
+) AS Product_Query;
 
-      
--------view returns -----------------
+---------------- View Product Subcategories ----------------
+CREATE VIEW gold.product_subcategories AS  
+SELECT * 
+FROM OPENROWSET(
+    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_ProductSubcategories',
+    FORMAT = 'PARQUET'
+) AS ProductSubcategories_Query;
 
-Create view gold.returns
-as 
-Select 
-      * from 
-      OPENROWSET(
-                BULK'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Returns',
-                FORMAT = 'Parquet'
+---------------- View Product Territories ----------------
+CREATE VIEW gold.product_territories AS  
+SELECT * 
+FROM OPENROWSET(
+    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_ProductTerritories',
+    FORMAT = 'PARQUET'
+) AS ProductTerritories_Query;
 
-      ) as returns_Query
+---------------- View Returns ----------------
+CREATE VIEW gold.returns AS 
+SELECT * 
+FROM OPENROWSET(
+    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Returns',
+    FORMAT = 'PARQUET'
+) AS Returns_Query;
 
----------------view sales ---------------
-
-Create view gold.sales
-as 
-Select 
-      * from 
-      OPENROWSET(
-                BULK'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Sales',
-                FORMAT = 'Parquet'
-
-      ) as sales_Query
-
-
-     
-      
-      
-      
-      
-      
+---------------- View Sales ----------------
+CREATE VIEW gold.sales AS 
+SELECT * 
+FROM OPENROWSET(
+    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Sales',
+    FORMAT = 'PARQUET'
+) AS Sales_Query;
