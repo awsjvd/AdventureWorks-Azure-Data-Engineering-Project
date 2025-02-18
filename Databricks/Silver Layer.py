@@ -1,4 +1,4 @@
-# SILVER LAYER SCRIPT
+# This is a Databricks Transformation Script
 # This script extracts, transforms, and loads data into the Silver Layer in Azure Data Lake.
 
 from pyspark.sql.functions import *
