@@ -1,19 +1,11 @@
 # Databricks ETL Transformation Script for Silver Layer
-# Reads raw data from the Bronze Layer in Azure Data Lake, applies transformations, and writes 
-# the processed data to the Silver Layer.
+# Reads raw data from the Bronze Layer in Azure Data Lake, applies transformations, and writes the processed data to the Silver Layer.
 
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
 # Configure Spark to authenticate with Azure Data Lake Storage
-spark.conf.set("fs.azure.account.auth.type.<your-storage-account>.dfs.core.windows.net", "OAuth")
-spark.conf.set("fs.azure.account.oauth.provider.type.<your-storage-account>.dfs.core.windows.net", "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider")
-spark.conf.set("fs.azure.account.oauth2.client.id.<your-storage-account>.dfs.core.windows.net", "<your-app-id>")
-spark.conf.set(
-    "fs.azure.account.oauth2.client.secret.<your-storage-account>.dfs.core.windows.net", 
-    dbutils.secrets.get(scope="<your-secret-scope>", key="<your-service-credential-key>")
-)
-spark.conf.set("fs.azure.account.oauth2.client.endpoint.<your-storage-account>.dfs.core.windows.net", "https://login.microsoftonline.com/<your-directory-id>/oauth2/token")
+# Add the configuration code here
 
 # Load data from the Bronze Layer
 df_cal = spark.read.format("csv").option("header", True).option("inferSchema", True).load("abfss://<your-container>@<your-storage-account>.dfs.core.windows.net/AdventureWorks_Calendar")
