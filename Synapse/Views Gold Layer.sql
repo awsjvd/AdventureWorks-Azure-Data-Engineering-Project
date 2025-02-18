@@ -1,9 +1,16 @@
+CREATE EXTERNAL DATA SOURCE silver_data_lake
+WITH 
+(
+    LOCATION = 'https://<STORAGE_ALIAS>.dfs.core.windows.net/silver',
+    CREDENTIAL = cred_aws
+);
 
 ---------------- View Calendar ----------------
 CREATE VIEW gold.calendar AS 
 SELECT * 
 FROM OPENROWSET(
-    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Calendar',
+    BULK 'AdventureWorks_Calendar',
+    DATA_SOURCE = silver_data_lake,
     FORMAT = 'PARQUET'
 ) AS Calendar_Query;
 
@@ -11,7 +18,8 @@ FROM OPENROWSET(
 CREATE VIEW gold.customer AS 
 SELECT * 
 FROM OPENROWSET(
-    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Customers',
+    BULK 'AdventureWorks_Customers',
+    DATA_SOURCE = silver_data_lake,
     FORMAT = 'PARQUET'
 ) AS Customer_Query;
 
@@ -19,7 +27,8 @@ FROM OPENROWSET(
 CREATE VIEW gold.products AS 
 SELECT * 
 FROM OPENROWSET(
-    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Products',
+    BULK 'AdventureWorks_Products',
+    DATA_SOURCE = silver_data_lake,
     FORMAT = 'PARQUET'
 ) AS Product_Query;
 
@@ -27,7 +36,8 @@ FROM OPENROWSET(
 CREATE VIEW gold.product_subcategories AS  
 SELECT * 
 FROM OPENROWSET(
-    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_ProductSubcategories',
+    BULK 'AdventureWorks_ProductSubcategories',
+    DATA_SOURCE = silver_data_lake,
     FORMAT = 'PARQUET'
 ) AS ProductSubcategories_Query;
 
@@ -35,7 +45,8 @@ FROM OPENROWSET(
 CREATE VIEW gold.product_territories AS  
 SELECT * 
 FROM OPENROWSET(
-    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_ProductTerritories',
+    BULK 'AdventureWorks_ProductTerritories',
+    DATA_SOURCE = silver_data_lake,
     FORMAT = 'PARQUET'
 ) AS ProductTerritories_Query;
 
@@ -43,7 +54,8 @@ FROM OPENROWSET(
 CREATE VIEW gold.returns AS 
 SELECT * 
 FROM OPENROWSET(
-    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Returns',
+    BULK 'AdventureWorks_Returns',
+    DATA_SOURCE = silver_data_lake,
     FORMAT = 'PARQUET'
 ) AS Returns_Query;
 
@@ -51,6 +63,7 @@ FROM OPENROWSET(
 CREATE VIEW gold.sales AS 
 SELECT * 
 FROM OPENROWSET(
-    BULK 'https://azdedatalake.dfs.core.windows.net/silver/AdventureWorks_Sales',
+    BULK 'AdventureWorks_Sales',
+    DATA_SOURCE = silver_data_lake,
     FORMAT = 'PARQUET'
 ) AS Sales_Query;
