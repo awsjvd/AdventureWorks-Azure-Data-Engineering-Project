@@ -1,4 +1,3 @@
- ===== These views will be created in the Gold Layer =====
 
 ---------------- View Calendar ----------------
 CREATE VIEW gold.calendar AS 
