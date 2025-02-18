@@ -125,4 +125,6 @@ df_sal = df_sal.withColumn('StockDate', to_timestamp('StockDate')) \
 # Write the transformed Sales Data to the Silver Layer.
 df_sal.write.format("parquet") \
     .mode("append") \
-    .option("path", "abfss://silver@<your-storage-account>.dfs.core.windows.net/Sales
+    .option("path", "abfss://silver@<your-storage-account>.dfs.core.windows.net/Sales") \
+    .save()
+
