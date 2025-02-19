@@ -17,7 +17,7 @@ This project demonstrates an **end-to-end Azure Data Engineering pipeline** usin
 3. **Data Serving & Analytics**  
    - **Azure Synapse Analytics** was used to create schemas, external tables, and views in the **Gold Layer** for data analytics.  
 
-## Data Model and Flow Diagram  
+## Flow Diagram  
 The data pipeline follows a structured **Bronze-Silver-Gold** architecture. The detailed **data flow diagram** can be viewed here:  
 
 ![Data Flow](https://github.com/awsjvd/Azure-Data-Engineering-Project/blob/main/Flow%20Diagram/Flow%20Diagram.png)  
@@ -35,9 +35,4 @@ The data pipeline follows a structured **Bronze-Silver-Gold** architecture. The 
 - Implement **CI/CD with Azure DevOps** for seamless deployment.  
 - Leverage **Power BI** for interactive dashboards.  
 
-## Author  
-**Your Name**  
 
-## License  
-This project is licensed under the **MIT License**.
-# Azure-Data-Engineering-Project
