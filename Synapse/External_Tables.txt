@@ -1,0 +1,90 @@
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Inaya#123';
+
+CREATE DATABASE SCOPED CREDENTIAL cred_aws
+WITH 
+   IDENTITY = 'Managed Identity';
+
+CREATE EXTERNAL DATA SOURCE source_silver
+WITH 
+(
+    LOCATION = 'https://azdedatalake.dfs.core.windows.net/silver',
+    CREDENTIAL = cred_aws
+);
+
+CREATE EXTERNAL DATA SOURCE source_gold
+WITH 
+(
+    LOCATION = 'https://azdedatalake.dfs.core.windows.net/gold',
+    CREDENTIAL = cred_aws
+);
+
+CREATE EXTERNAL FILE FORMAT file_parquet
+WITH
+(
+FORMAT_TYPE = PARQUET,
+DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'
+
+)
+
+CREATE External Table gold.tbl_sales
+WITH 
+(
+   LOCATION = 'External_Sales_Table',
+   DATA_SOURCE = file_parquet,
+   File_FORMAT = file_parquet
+)
+AS
+Select * from gold.sales 
+
+CREATE External Table gold.tbl_Customer
+WITH 
+(
+   LOCATION = 'External_Customer_Table',
+   DATA_SOURCE = file_parquet,
+   File_FORMAT = file_parquet
+)
+AS
+Select * from gold.customer
+
+CREATE External Table gold.tbl_Products
+WITH 
+(
+   LOCATION = 'External_Products_Table',
+   DATA_SOURCE = file_parquet,
+   File_FORMAT = file_parquet
+)
+AS
+Select * from gold.products
+
+CREATE External Table gold.tbl_productsubcategories
+WITH 
+(
+   LOCATION = 'External_productsubcategories_Table',
+   DATA_SOURCE = file_parquet,
+   File_FORMAT = file_parquet
+)
+AS
+Select * from gold.productsubcategories
+
+CREATE External Table gold.tbl_ProductTerritories
+WITH 
+(
+   LOCATION = 'External_ProductTerritories_Table',
+   DATA_SOURCE = file_parquet,
+   File_FORMAT = file_parquet
+)
+AS
+Select * from gold.ProductTerritories
+
+CREATE External Table gold.tbl_Returns
+WITH 
+(
+   LOCATION = 'External_Returns_Table',
+   DATA_SOURCE = file_parquet,
+   File_FORMAT = file_parquet
+)
+AS
+Select * from gold.returns
+
+
+
